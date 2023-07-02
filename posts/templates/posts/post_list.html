@@ -2,6 +2,11 @@
 
 {% block content %}
 <h2>Posts</h2>
+{% if user.is_authenticated %}
+    <h3>Create</h3>
+    {% include "posts/_post_form.html" %}
+{% endif %}
+<h3>Browse</h3>
 {% for post in page_obj %}
     <blockquote>
         <p>{{ post.content }}</p>
