@@ -6,6 +6,19 @@
         integrity="sha384-eHoWBq4xGyEfS3rmZe6gvzlNS/nNJhiPPbKCJN1cQHJukU+q6ji3My2fJGYd1EBo" crossorigin="anonymous">
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <span style="float: right;">
+                {% if user.is_authenticated %}
+                    {% include "registration/_logout-form.html" %}
+                {% else %}
+                    <a href="{% url 'accounts:login' %}">Sign in</a>
+                    <a href="{% url 'accounts:register' %}">Sign up</a>
+                {% endif %}
+            </span>
+        </nav>
+    </header>
     <main>
         {% block content %}{% endblock %}
     </main>
