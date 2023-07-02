@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Posts</h2>
+{% for post in page_obj %}
+    <blockquote>
+        <p>{{ post.content }}</p>
+        <footer>
+            <p><cite>— {{ post.author.username }}</cite></p>
+        </footer>
+    </blockquote>
+{% endfor %}
+{% include "_pagination.html" %}
+{% endblock %}
