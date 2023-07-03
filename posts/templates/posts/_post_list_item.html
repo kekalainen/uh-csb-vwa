@@ -3,4 +3,9 @@
     <footer>
         <p><cite>— {{ post.author.username }}</cite></p>
     </footer>
+    {% if display_delete %}
+        {% if user == post.author %}
+            <a href="{% url 'posts:delete' post.pk %}" style="float: right;">delete</a>
+        {% endif %}
+    {% endif %}
 </blockquote>

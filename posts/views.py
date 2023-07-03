@@ -1,9 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.core.validators import MaxLengthValidator
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
+# from accounts.mixins import UserOwnsObjectMixin
+from vwa.views import GenericDeleteView
 from .models import Post
 
 
@@ -15,6 +18,24 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class PostDeleteView(
+    LoginRequiredMixin,
+    # UserOwnsObjectMixin,
+    GenericDeleteView,
+):
+    model = Post
+    success_url = reverse_lazy("posts:list")
+    # object_owner_field_name = "author"
+
+    # This only guards requests using the POST method —
+    # no resource ownership validation for DELETE requests.
+    def form_valid(self, form):
+        if self.request.user != self.get_object().author:
+            raise PermissionDenied()
+
         return super().form_valid(form)
 
 
