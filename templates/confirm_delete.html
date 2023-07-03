@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Confirm deleting {{ model_name }}</h2>
+{% include list_item_template_name %}
+<p>Are you sure you want to delete this {{ model_name }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+    <a href="javascript:history.back();">Cancel</a>
+</form>
+{% endblock %}
