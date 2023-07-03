@@ -7,6 +7,8 @@
     {% include "posts/_post_form.html" %}
 {% endif %}
 <h3>Browse</h3>
+<h4>Search</h4>
+{% include "posts/_post_search_form.html" %}
 {% for post in page_obj %}
     <blockquote>
         <p>{{ post.content }}</p>

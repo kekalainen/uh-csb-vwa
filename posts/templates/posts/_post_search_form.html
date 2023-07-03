@@ -1,0 +1,7 @@
+<form action="{% url 'posts:list' %}" method="get">
+    <label>
+        Keyword:
+        <input type="text" name="filter" maxlength="255" value="{{ request.GET.filter }}">
+    </label>
+    <input type="submit" value="Search">
+</form>
