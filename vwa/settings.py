@@ -54,6 +54,16 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
+# Password hashers
+# https://docs.djangoproject.com/en/4.2/topics/auth/passwords/#auth-password-storage
+
+PASSWORD_HASHERS = [
+    "accounts.hashers.Base64PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+]
+
+
 ROOT_URLCONF = "vwa.urls"
 
 TEMPLATES = [
