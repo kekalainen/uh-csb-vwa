@@ -93,6 +93,12 @@ THROTTLE_BACKEND = "throttle.backends.cache.CacheBackend"
 THROTTLE_ENABLED = True
 
 THROTTLE_ZONES = {
+    "accounts:login": {
+        "VARY":"throttle.zones.RemoteIP",
+        "ALGORITHM": "fixed-bucket",
+        "BUCKET_INTERVAL": 60,
+        "BUCKET_CAPACITY": 10,
+    },
     "posts:create": {
         "VARY":"accounts.throttle_zones.User",
         "ALGORITHM": "fixed-bucket",

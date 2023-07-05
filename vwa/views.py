@@ -1,4 +1,16 @@
+from django.contrib.admin import site
 from django.views.generic.edit import DeleteView
+
+from throttle.decorators import throttle
+
+_admin_site_login_throttled = throttle(zone="accounts:login")(site.login)
+
+
+def admin_site_login_throttled_post(request):
+    if request.method == "POST":
+        return _admin_site_login_throttled(request)
+
+    return site.login(request)
 
 
 class GenericDeleteView(DeleteView):
