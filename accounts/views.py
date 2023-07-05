@@ -15,7 +15,7 @@ class RegisterView(UserIsAnonymousMixin, CreateView):
     template_name = "registration/register.html"
 
 
-@method_decorator(throttle(zone="accounts:login"), name="post")
+# @method_decorator(throttle(zone="accounts:login"), name="post")
 class LoginAnonymousView(UserIsAnonymousMixin, LoginView):
     pass
 

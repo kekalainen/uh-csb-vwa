@@ -24,6 +24,6 @@ urlpatterns = [
     path("", RedirectView.as_view(pattern_name="posts:list"), name="home"),
     path("accounts/", include("accounts.urls")),
     path("posts/", include("posts.urls")),
-    path("admin/login/", admin_site_login_throttled_post, name="login"),
+    # path("admin/login/", admin_site_login_throttled_post, name="login"),
     path("admin/", admin.site.urls),
 ]
