@@ -84,6 +84,24 @@ TEMPLATES = [
     },
 ]
 
+
+# Throttling
+# https://pypi.org/project/django-throttle-requests/
+
+THROTTLE_BACKEND = "throttle.backends.cache.CacheBackend"
+
+THROTTLE_ENABLED = True
+
+THROTTLE_ZONES = {
+    "posts:create": {
+        "VARY":"accounts.throttle_zones.User",
+        "ALGORITHM": "fixed-bucket",
+        "BUCKET_INTERVAL": 60,
+        "BUCKET_CAPACITY": 5,
+    },
+}
+
+
 WSGI_APPLICATION = "vwa.wsgi.application"
 
 

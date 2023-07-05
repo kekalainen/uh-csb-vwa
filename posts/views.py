@@ -2,14 +2,18 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.core.validators import MaxLengthValidator
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
+
+from throttle.decorators import throttle
 
 # from accounts.mixins import UserOwnsObjectMixin
 from vwa.views import GenericDeleteView
 from .models import Post
 
 
+@method_decorator(throttle(zone="posts:create"), name="dispatch")
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ("content",)
