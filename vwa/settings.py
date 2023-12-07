@@ -67,7 +67,8 @@ LOGGING = {
         "mail_admins": {
             "level": "ERROR",
             "filters": ["require_debug_false"],
-            "class": "django.utils.log.AdminEmailHandler",
+            "class": "logging.NullHandler",
+            # "class": "django.utils.log.AdminEmailHandler",
         },
     },
     "loggers": {
@@ -119,7 +120,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "security.middleware.SecurityMiddleware",
+    # "security.middleware.SecurityMiddleware",
 ]
 
 
