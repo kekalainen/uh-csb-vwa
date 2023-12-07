@@ -83,6 +83,13 @@ LOGGING = {
             "level": "INFO",
             "propagate": False,
         },
+        "security": {
+            "handlers": [
+                "console",
+                "mail_admins",
+            ],
+            "level": "INFO",
+        },
     },
 }
 
@@ -98,6 +105,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "accounts",
     "posts",
+    "security",
 ]
 
 LOGIN_REDIRECT_URL = "/"
@@ -111,6 +119,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "security.middleware.SecurityMiddleware",
 ]
 
 
